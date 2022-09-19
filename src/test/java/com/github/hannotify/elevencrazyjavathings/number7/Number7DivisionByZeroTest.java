@@ -25,9 +25,12 @@ class Number7DivisionByZeroTest {
         final var dividend = 42f;
         final var divisor = 0f;
 
-        assertThatExceptionOfType(ArithmeticException.class)
-                .isThrownBy(() -> Number7DivisionByZero.divide(dividend, divisor))
-                .withMessage("/ by zero");
+        assertThat(Number7DivisionByZero.divide(dividend, divisor)).isEqualTo(Float.POSITIVE_INFINITY);
+
+        /* Divide by zero with double does not throw ArithmeticException and thus, need to catch it with POSITIVE_INFINITY */
+        //assertThatExceptionOfType(ArithmeticException.class)
+        //        .isThrownBy(() -> Number7DivisionByZero.divide(dividend, divisor))
+        //        .withMessage("/ by zero");
     }
 
     @Test
@@ -36,8 +39,11 @@ class Number7DivisionByZeroTest {
         final var dividend = 42.0;
         final var divisor = 0.0;
 
-        assertThatExceptionOfType(ArithmeticException.class)
-                .isThrownBy(() -> Number7DivisionByZero.divide(dividend, divisor))
-                .withMessage("/ by zero");
+        assertThat(Number7DivisionByZero.divide(dividend, divisor)).isEqualTo(Double.POSITIVE_INFINITY);
+
+        /* Divide by zero with float does not throw ArithmeticException and thus, need to catch it with POSITIVE_INFINITY */
+        //assertThatExceptionOfType(ArithmeticException.class)
+        //        .isThrownBy(() -> Number7DivisionByZero.divide(dividend, divisor))
+        //        .withMessage("/ by zero");
     }
 }

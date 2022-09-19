@@ -27,13 +27,16 @@ class Number3WrapperObjectsTest {
     @Test
     @DisplayName("integerEquals() should return false when the same arguments (200) are passed")
     void integerEqualsShouldReturnFalseWith200() {
-        assertThat(integerEquals(200, 200)).isFalse();
+        assertThat(integerEquals(200, 200)).isFalse();//because separate object in heap
     }
 
     @Test
     @DisplayName("integerEquals() should return false when the same arguments (10) are passed")
     void integerEqualsShouldReturnFalseWith10() {
-        assertThat(integerEquals(10, 10)).isFalse();
+
+        //assertThat(integerEquals(10, 10)).isFalse(); -- as explained below
+
+        assertThat(integerEquals(10, 10)).isTrue();
     }
 
     /*
@@ -50,6 +53,10 @@ class Number3WrapperObjectsTest {
     @Test
     @DisplayName("integerEquals() should return true when the same arguments (10) are passed but one of the arguments is a new instance")
     void integerEqualsShouldReturnTrueWith10AndNew10() {
-        assertThat(integerEquals(10, new Integer(10))).isTrue();
+
+        // assertThat(integerEquals(10, new Integer(10))).isTrue(); -- as explained above
+        assertThat(integerEquals(10, new Integer(10))).isFalse(); //comparing int and Integer
+
+        assertThat(integerEquals(10, Integer.valueOf(10))).isTrue();
     }
 }

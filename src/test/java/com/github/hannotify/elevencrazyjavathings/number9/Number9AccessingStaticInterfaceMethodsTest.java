@@ -14,6 +14,11 @@ class Number9AccessingStaticInterfaceMethodsTest {
         Talk carrotsAreAwesome = new Talk("Bugs Bunny", "Carrots Are Awesome!", LocalTime.of(11, 0));
 
         assertThat(carrotsAreAwesome.LENGTH_IN_MINUTES).isEqualTo(50);
-//        assertThat(carrotsAreAwesome.lengthDescription()).isEqualTo("This slot lasts 50 minutes.");
+
+        //Following not possible because Static method may be invoked on containing interface class only
+        //assertThat(carrotsAreAwesome.lengthDescription()).isEqualTo("This slot lasts 50 minutes.");
+
+        //thus, need to call directly via Interface name
+        assertThat(Slot.lengthDescription()).isEqualTo("This slot lasts 50 minutes.");
     }
 }

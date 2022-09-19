@@ -4,7 +4,12 @@ import java.time.Year;
 
 public enum Conference {
     JAVA_ONE("JavaOne", 2022, "the USA"),
-    J_FALL("J-Fall", 2022, "the Netherlands"),
+    J_FALL("J-Fall", 2022, "the Netherlands") { //enum can provide it's own implementation
+        @Override
+        public String whenIsTheNext() {
+            return super.whenIsTheNext() + "It is the best one-day conference we know!";
+        }
+    },
     DEVOXX_UK("Devoxx UK", 2023, "United Kingdom");
 
     private final String name;

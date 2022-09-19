@@ -12,6 +12,7 @@ public class Number10StreamElementsShouldImplementComparable {
                 new Talk("Bugs Bunny", "Carrots Are Awesome!", LocalTime.of(11, 0)),
                 new Talk("Road Runner", "Stop Living Too Slow", LocalTime.of(9, 30)),
                 new Talk("Tweety", "Ban All Cats Off The Internet", LocalTime.of(14, 45))
-        ).sorted().collect(Collectors.toCollection(TreeSet::new));
+        ).sorted()//if sort is required, then comparable should be implemented
+        .collect(Collectors.toCollection(TreeSet::new));
     }
 }

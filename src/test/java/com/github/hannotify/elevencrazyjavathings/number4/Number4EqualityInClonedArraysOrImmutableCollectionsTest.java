@@ -16,7 +16,10 @@ class Number4EqualityInClonedArraysOrImmutableCollectionsTest {
         var talks = number4.getTalks();
         var clonedTalks = number4.getClonedTalks();
 
-        assertThat(talks == clonedTalks).isTrue();
+        //assertThat(talks == clonedTalks).isTrue(); Cloned array is new object, thus, false
+        assertThat(talks == clonedTalks).isFalse();
+
+        //assertThat(talks).doesNotContain(clonedTalks); Cloned array contains the same elements
         assertThat(talks).contains(clonedTalks);
     }
 }

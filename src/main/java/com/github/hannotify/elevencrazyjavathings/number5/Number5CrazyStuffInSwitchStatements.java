@@ -11,7 +11,8 @@ public class Number5CrazyStuffInSwitchStatements {
             case 'b':
                 description = "Good talk.";
                 break;
-            case 'c' | 'd':
+            case 'c' :
+            case 'd':
                 description = "Average talk.";
                 break;
             default:

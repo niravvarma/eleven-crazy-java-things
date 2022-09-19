@@ -1,5 +1,8 @@
 package com.github.hannotify.elevencrazyjavathings.number1;
 
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.IntFunction;
 import java.util.function.Supplier;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -52,21 +55,37 @@ class Number1PassingArgumentsToMethodReferencesTest {
 
         /*
         "Get me the constructor reference of the constructor that takes a String argument"
-         */
+
+
+        --following not possible as cannot pass arguments
         final Supplier<Venue> tinyClassroomSupplier = Venue::new;//("Classroom");
         assertTinyClassroom(tinyClassroomSupplier.get());
+
+        final Supplier<Venue> largeAnonymousVenueSupplier = Venue::new;//(200);
+        assertLargeAnonymousVenue(largeAnonymousVenueSupplier.get());
+
+        final Supplier<Venue> regularClassroomSupplier = Venue::new;//("Classroom", 30);
+        assertRegularClassroom(regularClassroomSupplier.get());
+         */
+
+        final Function<String, Venue> tinyClassroomFunction = Venue::new;
+        assertTinyClassroom(tinyClassroomFunction.apply("Classroom"));
 
         /*
         "Get me the constructor reference of the constructor that takes an Integer argument"
          */
-        final Supplier<Venue> largeAnonymousVenueSupplier = Venue::new;//(200);
-        assertLargeAnonymousVenue(largeAnonymousVenueSupplier.get());
+        final Function<Integer,Venue> largeAnonymousVenueFunction = Venue::new;//(200);
+        assertLargeAnonymousVenue(largeAnonymousVenueFunction.apply(200));
+
+        //above can be written as
+        final IntFunction<Venue> largeAnonymousVenueIntFunction = Venue::new;//(200);
+        assertLargeAnonymousVenue(largeAnonymousVenueIntFunction.apply(200));
 
         /*
         "Get me the constructor reference of the constructor that takes a String and Integer argument"
          */
-        final Supplier<Venue> regularClassroomSupplier = Venue::new;//("Classroom", 30);
-        assertRegularClassroom(regularClassroomSupplier.get());
+        final BiFunction<String, Integer, Venue> regularClassroomFunction = Venue::new;//("Classroom", 30);
+        assertRegularClassroom(regularClassroomFunction.apply("Classroom", 30));
 
         /*
         Arguments are required only when you actually invoke the constructor or a method.

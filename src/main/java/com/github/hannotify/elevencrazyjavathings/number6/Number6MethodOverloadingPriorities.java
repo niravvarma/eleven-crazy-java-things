@@ -19,4 +19,12 @@ public class Number6MethodOverloadingPriorities {
     public static void printSum(int... ints){
         System.out.format("In printSum(int...): %d%n", Arrays.stream(ints).sum());
     }
+
+    /**
+     * Note: even though integers are passed to printSum method in main class
+     * java calls the method first with primitive type i.e. double > Integer > int...
+     *
+     * if we had another method i.e. printSum(int a, int b), then order of call would be int > double > Integer > int..
+     */
+
 }

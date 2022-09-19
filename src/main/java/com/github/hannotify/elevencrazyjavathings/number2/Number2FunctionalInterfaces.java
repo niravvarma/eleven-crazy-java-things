@@ -6,7 +6,7 @@ public class Number2FunctionalInterfaces {
 
 }
 
-//@FunctionalInterface
+//@FunctionalInterface -- only interface class with abstract method can be FunctionalInterface
 abstract class Venue {
     public abstract void open();
 }
@@ -16,6 +16,9 @@ interface Speaker {
     void speak();
 }
 
+/**
+ * default methods are not considered for functional interface
+ */
 @FunctionalInterface
 interface Badge {
     void print();
@@ -24,11 +27,15 @@ interface Badge {
     }
 }
 
-//@FunctionalInterface
+//@FunctionalInterface -- not a functional interface because it will add another abstract method by extend keyword
 interface IgniteSpeaker extends Speaker {
     void stressOutOverTimeLimit(int timeLimit);
 }
 
+/**
+ * Is a functional interface because speak() method is overridden and set to default
+ * There is only 1 abstract method stressOutOverTimeLimit(), thus, valid functional interface
+ */
 @FunctionalInterface
 interface ByteSizeSpeaker extends Speaker {
     default void speak() {
@@ -37,6 +44,10 @@ interface ByteSizeSpeaker extends Speaker {
     void stressOutOverTimeLimit(int timeLimit);
 }
 
+/**
+ * as equals and toString are overridden from Object class, thus, they are NOT considered as abstract method
+ * hence, this is also a functional interface
+ */
 @FunctionalInterface
 interface Room {
     void book(LocalTime timeslot);
